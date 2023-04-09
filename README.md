@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+This application was built using a local database and some APIs (https://spoonacular.com/, https://themealdb.com/) When this application was created, these APIs were functional and free. The "spoonacular API" needs a key. After authorization, you must create a new .env file in the root directory and specify  in this file the value REACT_APP_KEY_SPOON argument. 
+
 ## Available Scripts
 
 In the project directory, you can run:

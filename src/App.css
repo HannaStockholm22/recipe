@@ -36,3 +36,55 @@
     transform: rotate(360deg);
   }
 }
+
+/* for this project */
+
+*,
+*::before,
+*::after{
+  box-sizing:inherit
+}
+
+a {
+  text-decoration: none;
+  color:inherit
+}
+h1,h2,h3,p{
+  padding: 0px;
+  margin: 0px;
+}
+
+li {
+list-style: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+button{
+  color:inherit;
+  font-size: inherit;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+}
+
+.header{
+  background-color: bisque;
+}
+
+.container{
+  max-width: 1220px;
+  padding: 0 10px;
+  margin: 0 auto; 
+}
+.footer{
+  background-image: url("../public/images/food.jpg"); 
+  background-position: bottom;
+  background-repeat:no-repeat;
+  background-size: cover;
+  height: 300px;
+}

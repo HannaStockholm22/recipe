@@ -1,0 +1,42 @@
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.img {
+    max-width: 100px;
+}
+
+.title {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 38px;
+    background: linear-gradient(180deg, #eb6912 0%, rgba(70, 50, 19, 0.93) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+.book {
+    width: 100px;
+    position: relative;
+}
+
+.inbook {
+    position: absolute;
+    right: -2px;
+    bottom: 0cm;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+    line-height: 0;
+    width: 16px;
+    height: 16px;
+    background-color: #000;
+    border-radius: 50%;
+    color: #fff;
+}

@@ -1,0 +1,25 @@
+.nav{
+ display:  flex;
+ justify-content: center;
+}
+
+.item {
+  color:white;
+  list-style-type:square;
+  margin: 10px;
+  padding: 10px;
+}
+
+.link{
+  color:inherit; 
+} 
+
+.active{
+  color: rgba(70, 50, 19, 0.93);
+  font-weight: 600;
+ 
+}
+
+
+
+
