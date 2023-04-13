@@ -1,12 +1,10 @@
 
-import { Veggie } from "./Veggie/Veggie";
-import { Popular } from "./Popular/Popular";
+import { RandDish } from "./RandDish/RandDish";
 
 export const Home = () => {
   return (
     <div>
-      <Veggie />
-      <Popular />
+      <RandDish/>
     </div>
   );
 };

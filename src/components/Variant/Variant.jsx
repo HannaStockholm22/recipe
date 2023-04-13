@@ -1,4 +1,5 @@
 import React from "react";
+import { Search } from "../Main/Search/Search";
 
 export const Variant = () => {
   const api1 = "https://www.themealdb.com/api/json/v1/1/";
@@ -28,14 +29,16 @@ export const Variant = () => {
 
   const getList = async (i) => {
     console.log("start");
-    const response = await fetch(api1 + forApi1List[i].str);
+    const myApi=api1+forApi1List[i].str;
+    const myVal=forApi1List[i].value
+    const response = await fetch(myApi);
     if (response.ok) {
       const jsonData = await response.json();
       const elemData = jsonData.meals;
-      const elemValue = elemData.map((e) => (e = eval(forApi1List[i].value)));
+      const elemValue = elemData.map((e) => (e = `${e.myVal}`));
       valuesArr[keyArr[i]] = [...elemValue];
-      console.log(" valuesArr=", valuesArr);
-      console.log("respons=", response.ok, "  status=", response.status);
+     /*console.log(" valuesArr=", valuesArr);
+      console.log("respons=", response.ok, "  status=", response.status); */
     } else {
       alert(" Error HTTP:", response.status);
     }
@@ -43,9 +46,11 @@ export const Variant = () => {
  
  for (let i = 0; i < forApi1List.length; i++) getList(i);
 
+ /*<Search keys={keyArr} val={valuesArr}/>*/
+
   return (
     <div>
-      Variant
+   
     </div>
   );
 };
