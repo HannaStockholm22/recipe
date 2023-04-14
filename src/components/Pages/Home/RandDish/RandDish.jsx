@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import ls from "./RandDish.module.css";
 import "@splidejs/react-splide/css";
+import { Carousel } from "../../../Carousel/Carousel";
 import { Slider } from "../../../Slider/Slider";
 
 export const RandDish = () => {
@@ -37,7 +38,7 @@ export const RandDish = () => {
         const jData = await response.json();
         console.log("jData=", jData);
         console.log("popular=", jData.recipes);
-        localStorage.setItem("popular", JSON.stringify(jData.recipes));
+        localStorage.setItem(inData, JSON.stringify(jData.recipes));
         switch(inData){
           case'randpopular':
           setPopular(jData.recipes);
@@ -57,10 +58,10 @@ export const RandDish = () => {
   return (
     <div className="container">
       <div className={ls.wrapper}>
-        <h3> Random popular dish:</h3>
+        <h3 className={ls.title}>  Random popular dish:</h3>
         <Slider dataArr={popular}/>  
-        <h3> Random veggie dish:</h3>
-        <Slider dataArr={veggie}/>          
+        <h3 className={ls.title}> Random veggie dish:</h3>
+        <Carousel dataArr={veggie}/>          
       </div>
     </div>
   );
