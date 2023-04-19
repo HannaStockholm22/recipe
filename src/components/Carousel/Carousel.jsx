@@ -1,8 +1,8 @@
 import React from "react";
-import ls from "./Carousel.module.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { OneSlide } from "../OneSlide/OneSlide";
 
 export const Carousel = ({ dataArr }) => {
   const settings = {
@@ -42,21 +42,17 @@ export const Carousel = ({ dataArr }) => {
       ]
 }
 
-  const sliderElem = dataArr.map((e) => {
-    return (
-      <div className={ls.slide} key={e.id}>
-        <div className={ls.card}>
-          <p className={ls.card__p}>{e.title}</p>
-          <img className={ls.card__img} src={e.image} alt="img_of_the_dish" />
-        </div>
-        <div className={ls.gradient}></div>
-      </div>
-    );
-  });
-
+const sliderElements = dataArr.map((e) => {
+  return (
+    <div key={e.id}>
+       <OneSlide elem={e}/>
+    </div>
+  );
+});
+   
   return (
     <Slider {...settings}>
-      {sliderElem}
+     {sliderElements}
     </Slider>
 
   );

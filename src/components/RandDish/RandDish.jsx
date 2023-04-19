@@ -2,8 +2,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import ls from "./RandDish.module.css";
 import "@splidejs/react-splide/css";
-import { Carousel } from "../../../Carousel/Carousel";
-import { Slider } from "../../../Slider/Slider";
+import { Carousel } from "../Carousel/Carousel";
+import { Slider } from "../Slider/Slider";
 
 export const RandDish = () => {
   const [popular, setPopular] = useState([]);

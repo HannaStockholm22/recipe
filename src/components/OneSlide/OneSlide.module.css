@@ -1,0 +1,45 @@
+
+.slide{
+    position: relative;
+}
+
+
+.card {
+    min-height: 100px;
+    border-radius: 10px;
+    overflow: hidden;   
+}
+
+.card__p {
+    z-index: 2;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 0%);
+    font-size: 14px;
+    color: white;
+    width: 100%;
+    text-align: center;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card__img {
+    border-radius: 10px;
+    position: absolut;
+    left: 0;
+    width: 100%;
+    object-fit: cover;
+}
+
+.gradient {
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+    border-radius: 10px;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+}

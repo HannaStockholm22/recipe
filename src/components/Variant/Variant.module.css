@@ -1,0 +1,44 @@
+
+.title{
+    margin: 0 12px;
+    padding: 5px 10px;
+    color: brown;
+}
+.list{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 5px;
+}
+.radio {
+    display: inline-block;
+    margin: 0 12px;
+}
+.input {
+    display: none;
+}
+.label {
+    display: inline-block;
+    border: 1px solid brown;
+    border-radius: 20px;
+    background-color: inherit;
+    color: #8F8D8D;
+    font-size: 14px;
+    line-height: 28px;
+    padding: 0px 10px;
+    min-width: 60px;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* Checked */
+.input:checked+label {
+    background-color: bisque;
+    transition: all .5s;
+}
+
+/* Hover */
+.label:hover {
+    border: 1px solid bisque;
+    transition: all .5s;
+}

@@ -1,0 +1,14 @@
+.list{
+    display: flex;
+    justify-content: center;
+}
+.item{
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+}
+
+.title{
+    font-size: 14px;
+    color:brown;
+}

@@ -1,9 +1,11 @@
-import { Home } from "./Home/Home";
+import { Category } from "../Category/Category";
+import { RandDish } from "../RandDish/RandDish";
 
 export const Pages = () => {
   return (
     <div>
-      <Home />
+      <Category/>
+      <RandDish />
     </div>
   );
 };

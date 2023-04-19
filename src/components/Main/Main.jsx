@@ -1,7 +1,7 @@
 
 import ls from "./Main.module.css";
 import { Result } from "./Result/Result";
-import { Search } from "./Search/Search";
+import { Search } from "../Search/Search";
 
 export const Main = ({updateBasket}) => {
  /* let ingredientsSet = new Set();
@@ -16,7 +16,7 @@ export const Main = ({updateBasket}) => {
  
   return (
     <div className={ls.inner}>
-       <Search  keys={keyArr} val={valuesArr} />
+       <Search  keyArr={keyArr} valArr={valuesArr} />
        <Result updateBasket={updateBasket}/>     
     </div>
   );
