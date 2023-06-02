@@ -20,7 +20,7 @@ export const Category = () => {
      
         <div className={ls.item}>
           <TbSalad  />
-          <h4 className={ls.title}>Salsad</h4>
+          <h4 className={ls.title}>Salad</h4>
         </div>
     
    

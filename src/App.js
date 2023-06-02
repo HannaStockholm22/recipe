@@ -14,6 +14,7 @@ import { Variant } from "./components/Variant/Variant";
 
 const App = () => {
   const [counter, setCounter] = useState(0);
+
   const updateBasket=()=>{
     setCounter(counter+1);
   }
@@ -27,9 +28,9 @@ const App = () => {
       <div className="main">  
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/fromDB/*" element={<Main />} />
+          <Route path="/fromDB/*" element={<Main updateBasket={updateBasket}/>} />
           <Route path="/fromAPI2/*" element={<Pages/>} />
-          <Route path="/fromAPI1/*" element={<Variant/>} />
+          <Route path="/fromAPI1/*" element={<Variant updateBasket={updateBasket}/>} />
         </Routes>
       </div>
       <footer className="footer">

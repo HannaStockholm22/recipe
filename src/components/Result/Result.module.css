@@ -1,0 +1,10 @@
+.inner{
+    background-color: burlywood;
+}
+.block{
+    background-color: white;
+    align-items: center;
+    margin: 30px 10px;
+    border: 1px solid white;
+    border-radius: 10px;
+}
