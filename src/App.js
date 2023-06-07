@@ -14,28 +14,35 @@ import { Variant } from "./components/Variant/Variant";
 
 const App = () => {
   const [counter, setCounter] = useState(0);
-
-  const updateBasket=()=>{
-    setCounter(counter+1);
-  }
+  const [yourChoice, setYourChoice] = useState(new Set());
   
+  const updateBasket=(val)=>{
+    setCounter(counter+1);
+    console.log('Counter was set',counter,val);
+    setYourChoice(yourChoice.add(val));
+    console.log('yourChoice=',yourChoice);
+  }
+
+
+  /*<Route path="/fromDB/*" element={<Main updateBasket={updateBasket}/>} />*/
   return (
     <div className="wrapper">
       <header className="header">
-        <Header counter={counter}/>
+        <Header counter={counter} basket={yourChoice}/>
         <Navbar/>
       </header> 
       <div className="main">  
         <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/fromDB/*" element={<Main updateBasket={updateBasket}/>} />
-          <Route path="/fromAPI2/*" element={<Pages/>} />
-          <Route path="/fromAPI1/*" element={<Variant updateBasket={updateBasket}/>} />
+          <Route path="/" element={<Pages updateBasket={updateBasket} />} />
+         
+          <Route path="/fromAPI2/*" element={<Pages updateBasket={updateBasket}/>} />
+          <Route path="/fromAPI1/*" element={<Variant updateBasket={updateBasket.bind()}/>} />
         </Routes>
       </div>
       <footer className="footer">
         <Footer />
       </footer>
+      
     </div>
   );
 };

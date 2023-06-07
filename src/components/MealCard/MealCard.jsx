@@ -1,14 +1,37 @@
 import ls from "./MealCard.module.css";
-import { Divider, Button, Modal, Space, Table} from "antd";
+import { Divider, Button, Modal, Space, Table, Typography } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 import { useState } from "react";
 
 export const MealCard = ({ name, pic, id, api1, updateBasket }) => {
   const [forId, setForId] = useState("1");
   const [open, setOpen] = useState(false);
+  const { Text, Title } = Typography;
+
+  const forApi1Search = [
+    { name: "firstLetter", str: "search.php?f=" },
+    { name: "byName", str: "search.php?s=" },
+    { name: "byId", str: "lookup.php?i=" },
+  ];
+  const theMealApi=api1 + forApi1Search[2].str + id;
+  const theMealLS=forApi1Search[2].name + id;
+
+  const ingrArray = []; 
+  for (let i = 1; i <= 20; i++) {
+    const keyForName = "strIngredient" + i;
+    const keyForMeasure = "strMeasure" + i;
+    if (forId[keyForName]) {
+      ingrArray.push({
+        key: i,
+        nameIngr: forId[keyForName],
+        measureIngr: forId[keyForMeasure],
+      });
+    }
+  }
 
   const showModal = () => {
     console.log("MORE INFO");
-    getDataSearch(forApi1Search[2].name + id, api1 + forApi1Search[2].str + id);
+    getDataSearch(theMealLS,theMealApi);
     setOpen(true);
   };
 
@@ -17,21 +40,13 @@ export const MealCard = ({ name, pic, id, api1, updateBasket }) => {
   };
   const handleOk = () => {
     setOpen(false);
+    updateBasket(theMealLS,theMealApi);
   };
-
-  const forApi1Search = [
-    { name: "firstLetter", str: "search.php?f=" },
-    { name: "byName", str: "search.php?s=" },
-    { name: "byId", str: "lookup.php?i=" },
-  ];
-
-  const IngrArray = [];
 
   const getDataSearch = async (inData, api) => {
     const check = localStorage.getItem(inData);
     if (check) {
       setForId(JSON.parse(check)[0]);
-     
     } else {
       const response = await fetch(api);
       if (response.ok) {
@@ -47,19 +62,6 @@ export const MealCard = ({ name, pic, id, api1, updateBasket }) => {
     }
   };
 
-  for (let i = 1; i <= 20; i++) {
-    const keyForName = "strIngredient" + i;
-    const keyForMeasure = "strMeasure" + i;
-    if (forId[keyForName]) {
-      IngrArray.push({
-        key: i,
-        nameIngr: forId[keyForName],
-        measureIngr: forId[keyForMeasure],
-      });
-    }
-  }
-
-  console.log("IngArr", IngrArray);
 
   const columns = [
     {
@@ -67,17 +69,21 @@ export const MealCard = ({ name, pic, id, api1, updateBasket }) => {
       dataIndex: "nameIngr",
       render: (text) => <a>{text}</a>,
     },
-
     {
       title: "Measure",
       dataIndex: "measureIngr",
     },
   ];
+  
 
   return (
     <div>
       <div className={ls.inner}>
-        <Divider> {name} </Divider>
+        <Divider>
+          <Text style={{ width: 230 }} ellipsis={{ tooltip: true }}>
+            {name}
+          </Text>
+        </Divider>
         <img src={pic} alt="photo" />
         <p>ID{id}</p>
         <Button type="text" block onClick={showModal}>
@@ -85,14 +91,30 @@ export const MealCard = ({ name, pic, id, api1, updateBasket }) => {
         </Button>
 
         <Modal
-          title="More information"
+          title={
+            <Space className={ls.modTitle}>
+              <Title level={3} style={{ color: "rgb(81, 66, 43)" }}>{name}</Title>
+              <Button className={ls.modBtnOk} onClick={handleOk}>
+                Add
+                <PlusOutlined />
+              </Button>
+            </Space>
+          }
           open={open}
           onCancel={handleCancel}
           onOk={handleOk}
+          okText={ <Space> Add<PlusOutlined /></Space>}
           width={1200}
           height={700}
+          okButtonProps={{
+            style: {
+              border: "1px solid rgb(48, 39, 39)",
+              backgroundColor: "blanchedalmond",
+              color: "rgb(81, 66, 43)",
+            },
+          }}
         >
-          <Divider> {name} </Divider>
+          <Divider>Recipe</Divider>
           <Space direction="vertical">
             <div>
               <img className={ls.modImg} src={forId.strMealThumb} alt="photo" />
@@ -104,13 +126,15 @@ export const MealCard = ({ name, pic, id, api1, updateBasket }) => {
 
             <div>
               <h3>Ingredients</h3>
-              <Table columns={columns} dataSource={IngrArray} bordered />
+              <Table
+                columns={columns}
+                dataSource={ingrArray}
+                bordered
+                size="small"
+                pagination={false}
+              />
             </div>
           </Space>
-        
-          <Button type="text" block >
-            Save
-          </Button>
         </Modal>
       </div>
     </div>

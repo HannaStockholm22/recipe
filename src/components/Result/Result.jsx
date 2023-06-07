@@ -19,7 +19,7 @@ export const Result = ({ updateBasket, newVal, findEl,api1 }) => {
     return (
       <div className={ls.inner}>
         <div className="container">
-          <Divider>It is a result of searching {newVal} </Divider>
+          <Divider>It is a result of searching {newVal}  </Divider>
           {FindMeal}
         </div>
       </div>

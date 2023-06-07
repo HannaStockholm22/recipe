@@ -1,0 +1,13 @@
+
+.inner{
+  text-align: center;
+  background-image: url("../../../public/images/food_sm.jpg"); 
+  background-position: bottom;
+  background-repeat:no-repeat;
+  background-size:contain;
+  height: 105px;
+  
+}
+.img{
+    height: 95px;
+}

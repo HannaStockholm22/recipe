@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { OneSlide } from "../OneSlide/OneSlide";
 
-export const Carousel = ({ dataArr }) => {
+export const Carousel = ({ dataArr}) => {
   const settings = {
     dots: false,
     slidesToShow: 5,
@@ -42,10 +42,10 @@ export const Carousel = ({ dataArr }) => {
       ]
 }
 
-const sliderElements = dataArr.map((e) => {
+const sliderElements = dataArr.map((e,index) => {
   return (
     <div key={e.id}>
-       <OneSlide elem={e}/>
+       <OneSlide elem={e} i={index}/>
     </div>
   );
 });

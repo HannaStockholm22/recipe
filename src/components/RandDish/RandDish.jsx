@@ -13,10 +13,11 @@ export const RandDish = () => {
     `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_KEY_SPOON}&number=9&tags="veggie"`
   ]
 
-  useEffect(() => {
-    getData("randpopular",api2[0]);
-    getData("randveggie",api2[1]);
+ useEffect(() => {
+     getData("randpopular",api2[0]);
+  getData("randveggie",api2[1]);
   }, []);
+
   
   const getData = async (inData,api) => {
 
@@ -59,9 +60,9 @@ export const RandDish = () => {
     <div className="container">
       <div className={ls.wrapper}>
         <h3 className={ls.title}>  Random popular dish:</h3>
-        <Slider dataArr={popular}/>  
+        <Slider dataArr={popular} />  
         <h3 className={ls.title}> Random veggie dish:</h3>
-        <Carousel dataArr={veggie}/>          
+        <Carousel dataArr={veggie} />          
       </div>
     </div>
   );
