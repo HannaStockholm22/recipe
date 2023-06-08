@@ -1,0 +1,15 @@
+.inner {
+    background-color: white;
+    color: gray;
+    width: 265px;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.img {
+    width: 300px;
+    min-height: 220px;
+    height: 220px;
+}
+

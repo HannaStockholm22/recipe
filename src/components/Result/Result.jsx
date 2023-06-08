@@ -6,9 +6,9 @@ import { Divider, Space } from "antd";
 export const Result = ({ updateBasket, newVal, findEl,api1 }) => {
 
   if (findEl) {
-    const FindMeal = findEl.map((e) => {
+    const FindMeal = findEl.map((e, index) => {
       return (
-        <Space className={ls.block}>
+        <Space key={index} className={ls.block}>
           <Space  wrap>
             <MealCard name={e.strMeal} pic={e.strMealThumb} id={e.idMeal} api1={api1} updateBasket={updateBasket}/>
           </Space>

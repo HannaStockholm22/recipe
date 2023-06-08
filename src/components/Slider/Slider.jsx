@@ -3,11 +3,11 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { OneSlide } from "../OneSlide/OneSlide";
 
-export const Slider = ({ dataArr}) => {
+export const Slider = ({ dataArr ,updateBasket}) => {
   const sliderElements = dataArr.map((e,index) => {
     return (
       <SplideSlide key={e.id}>
-         <OneSlide elem={e} i={index}/>
+         <OneSlide elem={e} i={index} updateBasket={updateBasket}/>
       </SplideSlide>
     );
   });

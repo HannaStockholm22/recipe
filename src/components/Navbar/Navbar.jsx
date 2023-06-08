@@ -11,7 +11,6 @@ export const Navbar = () => {
 
     return (
         <nav className={ls.nav}>
-
             <button className={ls.item}>
                 <NavLink className={navData => navData.isActive ? ls.active : ls.link} to='fromAPI2'>From'Spoon'</NavLink>
             </button>

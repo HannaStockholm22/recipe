@@ -1,0 +1,31 @@
+.book {
+    background-color: rgb(165, 137, 100);
+}
+
+.top {
+    text-align: right;
+}
+
+
+
+.block {
+    background-color: white;
+    align-items: center;
+    margin: 30px 10px;
+    border: 1px solid wheat;
+    border-radius: 10px;
+}
+
+
+.btn {
+    border: 1px solid bisque;
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin: 5px;
+    color: bisque
+}
+
+.btn:hover {
+    background-color: bisque;
+    color: rgb(81, 66, 43);
+}

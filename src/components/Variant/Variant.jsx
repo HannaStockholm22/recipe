@@ -3,8 +3,8 @@ import ls from "./Variant.module.css";
 import { AntdSearch } from "../AntdSearch/AntdSearch";
 import { Result } from "../Result/Result";
 
-export const Variant = ({updateBasket}) => {
-  const api1 = "https://www.themealdb.com/api/json/v1/1/";
+export const Variant = ({updateBasket,api1}) => {
+  const [selectValues, setSelectValues] = useState([undefined,undefined,undefined]);
   const forApi1List = [
     {
       id: 0,
@@ -53,7 +53,10 @@ export const Variant = ({updateBasket}) => {
 
   const updateUserChoise = (el, ind, keyChoice) => {
     setnewVal(el);
-    console.log("new choise is", el, ind, keyChoice);
+    const vals = [undefined,undefined,undefined];
+    vals[ind] = el;
+    setSelectValues(vals);
+
     getDataFilter(
       forApi1Filter[ind].name + el,
       api1 + forApi1Filter[ind].str + el,
@@ -64,24 +67,19 @@ export const Variant = ({updateBasket}) => {
   let keyArr = [];
   let valuesArr = [];
   keyArr = forApi1List.map((e) => (e = e.key));
-  console.log("keyArr=", keyArr);
-
 
   const getDataList = async (inData, api, i) => {
     const check = localStorage.getItem(inData);
     if (check) {
       setValue(JSON.parse(check));
       valuesArr[keyArr[i]] = JSON.parse(check);
-      console.log(keyArr[i], "=", valuesArr[keyArr[i]]);
     } else {
       const response = await fetch(api);
       if (response.ok) {
         const jsonData = await response.json();
         const elemData = jsonData.meals;
-        console.log("elemData=", elemData);
         const elemValue = elemData.map((e) => e[forApi1List[i].value]);
         valuesArr[keyArr[i]] = [...elemValue];
-        console.log(" valuesArr=", valuesArr);
         localStorage.setItem(inData, JSON.stringify(elemValue));
         setValue(elemValue);
         console.log("respons=", response.ok, "  status=", response.status," value=",value);
@@ -100,10 +98,8 @@ export const Variant = ({updateBasket}) => {
       if (response.ok) {
         const jsonData = await response.json();
         const elemData = jsonData.meals;
-        console.log("elemData=", elemData);
         localStorage.setItem(inData, JSON.stringify(elemData));
-        setArrValue(elemData);
-        console.log("respons=", response.ok, "  status=", response.status," value=",arrValue);
+        setArrValue(elemData);     
       } else {
         alert(" Error HTTP:", response.status);
       }
@@ -116,7 +112,9 @@ export const Variant = ({updateBasket}) => {
       return (
         <div className={ls.radio} key={index}>
           <label className={ls.label} htmlFor={e}> {e} </label>
-          <AntdSearch oneKey={keyArr[index]} ind={index}
+          <AntdSearch oneKey={keyArr[index]} 
+            value={selectValues[index]}
+            ind={index}
             valArrForOneKey={JSON.parse(localStorage.getItem(forApi1List[index].name))}
             updateUserChoise={updateUserChoise}       
           />

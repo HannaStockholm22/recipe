@@ -13,10 +13,10 @@ export const MealCard = ({ name, pic, id, api1, updateBasket }) => {
     { name: "byName", str: "search.php?s=" },
     { name: "byId", str: "lookup.php?i=" },
   ];
-  const theMealApi=api1 + forApi1Search[2].str + id;
-  const theMealLS=forApi1Search[2].name + id;
+  const theMealApi = api1 + forApi1Search[2].str + id;
+  const theMealLS = forApi1Search[2].name + id;
 
-  const ingrArray = []; 
+  const ingrArray = [];
   for (let i = 1; i <= 20; i++) {
     const keyForName = "strIngredient" + i;
     const keyForMeasure = "strMeasure" + i;
@@ -30,8 +30,7 @@ export const MealCard = ({ name, pic, id, api1, updateBasket }) => {
   }
 
   const showModal = () => {
-    console.log("MORE INFO");
-    getDataSearch(theMealLS,theMealApi);
+    getDataSearch(theMealLS, theMealApi);
     setOpen(true);
   };
 
@@ -40,7 +39,7 @@ export const MealCard = ({ name, pic, id, api1, updateBasket }) => {
   };
   const handleOk = () => {
     setOpen(false);
-    updateBasket(theMealLS,theMealApi);
+    updateBasket(mealInfo);
   };
 
   const getDataSearch = async (inData, api) => {
@@ -52,16 +51,13 @@ export const MealCard = ({ name, pic, id, api1, updateBasket }) => {
       if (response.ok) {
         const jsonData = await response.json();
         const elemData = jsonData.meals;
-        console.log("elemData=", elemData);
         localStorage.setItem(inData, JSON.stringify(elemData));
         setForId(elemData[0]);
-        console.log("respons=", response.ok, "  status=", response.status);
       } else {
         alert(" Error HTTP:", response.status);
       }
     }
   };
-
 
   const columns = [
     {
@@ -74,7 +70,16 @@ export const MealCard = ({ name, pic, id, api1, updateBasket }) => {
       dataIndex: "measureIngr",
     },
   ];
-  
+
+  const mealInfo = {
+    idMeal: id,
+    name: name,
+    pathImg: pic,
+    instrStr: forId.strInstructions,
+    instrObj: undefined,
+    ingradArray: ingrArray,
+    source: 1,
+  };
 
   return (
     <div>
@@ -93,17 +98,24 @@ export const MealCard = ({ name, pic, id, api1, updateBasket }) => {
         <Modal
           title={
             <Space className={ls.modTitle}>
-              <Title level={3} style={{ color: "rgb(81, 66, 43)" }}>{name}</Title>
+              <Title level={3} style={{ color: "rgb(81, 66, 43)" }}>
+                {name}
+              </Title>
               <Button className={ls.modBtnOk} onClick={handleOk}>
-                Add
                 <PlusOutlined />
+                Add
               </Button>
             </Space>
           }
           open={open}
           onCancel={handleCancel}
           onOk={handleOk}
-          okText={ <Space> Add<PlusOutlined /></Space>}
+          okText={
+            <Space>
+              <PlusOutlined />
+              Add
+            </Space>
+          }
           width={1200}
           height={700}
           okButtonProps={{

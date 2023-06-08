@@ -1,11 +1,10 @@
-import { Category } from "../Category/Category";
+
 import { RandDish } from "../RandDish/RandDish";
 
-export const Pages = () => {
+export const Pages = ({updateBasket,api2}) => {
   return (
     <div>
-      <Category/>
-      <RandDish />
+      <RandDish updateBasket={updateBasket} api2={api2}/>
     </div>
   );
 };

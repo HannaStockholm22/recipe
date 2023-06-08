@@ -1,0 +1,23 @@
+.modImg {
+    width: 300px;
+    float: left;
+    padding: 0px 20px 20px 0px;
+}
+
+.modBottom {
+    text-align: center;
+    margin: 25px;
+}
+
+.modBtn {
+    border: 1px solid bisque;
+    border-radius: 10px;
+    padding: 5px 20px;
+    color: bisque;
+
+}
+
+.modBtn:hover {
+    background-color: bisque;
+    color: rgb(81, 66, 43);
+}

@@ -3,8 +3,9 @@ import ls from "./OneSlide.module.css";
 import {  Divider, Button, Modal, Space, Table, Typography } from "antd";
 import { LikeOutlined, PlusOutlined } from "@ant-design/icons";
 
-export const OneSlide = ({ elem, i }) => {
+export const OneSlide = ({ elem, i, updateBasket }) => {
   const [open, setOpen] = useState(false);
+
   const dataInstruction = elem?.analyzedInstructions[0]?.steps.map((item, index) => ({
     key: index,
     num: item.number,
@@ -13,16 +14,22 @@ export const OneSlide = ({ elem, i }) => {
 
   const dataIngredients = elem.extendedIngredients.map((item, index) => ({
     key: index,
-    name: item.name,
-    measure: item.measures.metric.amount+" "+ item.measures.metric.unitShort 
+    nameIngr: item.name,
+    measureIngr: item.measures.metric.amount+" "+ item.measures.metric.unitShort 
   }));
+
+  const mealInfo={
+    idMeal:'i'+elem.id,
+    name: elem.title,
+    pathImg:elem.image,
+    instrStr:"",
+    instrObj:dataInstruction,
+    ingradArray:dataIngredients,
+    source:2,  
+  }
   
- 
   const { Title } = Typography;
   const showModal = () => {
-    console.log("The meal was chosen", elem.id, i);
-    console.log("Instr=",dataInstruction);
-    console.log("Ingred=",dataIngredients);
     setOpen(true);
   };
 
@@ -31,15 +38,17 @@ export const OneSlide = ({ elem, i }) => {
   };
   const handleOk = () => {
     setOpen(false);
+    updateBasket(mealInfo);
   };
+
   const columns1 = [
     {
       title: "name",
-      dataIndex: "name",
+      dataIndex: "nameIngr",
     },
     {
       title: "measure",
-      dataIndex: "measure",
+      dataIndex: "measureIngr",
     },
   ];
   const columns2 = [
@@ -70,8 +79,8 @@ export const OneSlide = ({ elem, i }) => {
             <Space className={ls.modTitle}>
               <Title level={3} style={{ color: "rgb(81, 66, 43)" }}>{elem.title}</Title>
               <Button className={ls.modBtnOk} onClick={handleOk}>
-                Add
-                <PlusOutlined />
+              <PlusOutlined />
+                Add  
               </Button>
             </Space>
           }
@@ -82,6 +91,7 @@ export const OneSlide = ({ elem, i }) => {
         width={1200}
         height={700}
         footer={null}
+        
       >
         <Divider>Recipe</Divider>
         <div>

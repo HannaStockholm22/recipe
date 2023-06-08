@@ -1,13 +1,10 @@
 import ls from "./AntdSearch.module.css";
 import { Select } from "antd";
 
-export const AntdSearch = ({ oneKey,ind,valArrForOneKey,updateUserChoise}) => {
+export const AntdSearch = ({ oneKey,ind,valArrForOneKey,updateUserChoise,value}) => {
 
   const handleChange = (value) => {
-    console.log(`Selected: ${value} `);
     updateUserChoise(value, ind, oneKey);
-
-
   };
 
   const activePlaceholder = oneKey;
@@ -24,16 +21,14 @@ export const AntdSearch = ({ oneKey,ind,valArrForOneKey,updateUserChoise}) => {
   return (
     <Select
       className={ls.forSelect}
-      value={undefined}
-     
+      value={value}
       bordered={false}
       placeholder={activePlaceholder}
       dropdownStyle={{ maxHeight: 300, overflow: 'auto'}}
       onChange={handleChange}
       options={options}
       showSearch={true}
-      
-        />
+    />
   );
 };
 
